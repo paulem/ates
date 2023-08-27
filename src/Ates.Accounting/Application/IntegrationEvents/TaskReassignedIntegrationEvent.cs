@@ -1,6 +1,8 @@
-namespace Ates.Tracker.Application.IntegrationEvents;
+using MediatR;
 
-public class TaskReassignedIntegrationEvent
+namespace Ates.Accounting.Application.IntegrationEvents;
+
+public class TaskReassignedIntegrationEvent : INotification
 {
     public TaskReassignedIntegrationEvent(Guid taskId, Guid newAssigneeId)
     {

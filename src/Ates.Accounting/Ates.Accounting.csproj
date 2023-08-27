@@ -29,8 +29,5 @@
         <ProjectReference Include="..\Ates.SchemaRegistry\Ates.SchemaRegistry.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Domain\Events\" />
-    </ItemGroup>
 
 </Project>

@@ -2,6 +2,8 @@ using Ates.Accounting.Domain;
 using Ates.Accounting.SeedWork;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Task = Ates.Accounting.Domain.Task;
+using TaskStatus = Ates.Accounting.Domain.TaskStatus;
 
 namespace Ates.Accounting;
 
@@ -17,14 +19,21 @@ public class AccountingDbContext : DbContext, IUnitOfWork
     //
 
     public DbSet<Account> Accounts => Set<Account>();
+    public DbSet<Task> Tasks => Set<Task>();
     
     //
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasPostgresEnum<AccountRole>();
+        modelBuilder.HasPostgresEnum<TaskStatus>();
         
         modelBuilder.Entity<Account>(entity =>
+        {
+            entity.Ignore(e => e.DomainEvents);
+        });
+        
+        modelBuilder.Entity<Task>(entity =>
         {
             entity.Ignore(e => e.DomainEvents);
         });
