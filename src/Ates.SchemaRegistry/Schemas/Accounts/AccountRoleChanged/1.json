@@ -1,0 +1,40 @@
+﻿{
+  "type": "object",
+  "properties": {
+    "EventId": {
+      "$ref": "#/$defs/guid"
+    },
+    "Name": {
+      "type": "string"
+    },
+    "Version": {
+      "type": "integer"
+    },
+    "CreatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "Data": {
+      "type": "object",
+      "properties": {
+        "PublicId": {
+          "$ref": "#/$defs/guid"
+        },
+        "Role": {
+          "enum": [
+            "Worker",
+            "Admin"
+          ],
+          "readOnly": true
+        }
+      }
+    }
+  },
+  "$defs": {
+    "guid": {
+      "type": "string",
+      "format": "uuid",
+      "readOnly": true
+    }
+  }
+}

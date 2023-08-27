@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <UserSecretsId>6bba99af-c22e-42ac-83dd-67edcb0ac481</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+        <PackageReference Include="Confluent.Kafka" Version="2.2.0" />
+        <PackageReference Include="EFCore.NamingConventions" Version="7.0.2" />
+        <PackageReference Include="MediatR" Version="12.1.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.10" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.10" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Ates.SchemaRegistry\Ates.SchemaRegistry.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Domain\Events\" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ates.Tracker", "src\Ates.Tracker\Ates.Tracker.csproj", "{F6DFE210-BE32-4FA6-9AE7-1EC3657761A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ates.Auth", "src\Ates.Auth\Ates.Auth.csproj", "{43EC44C9-9E71-4AF3-A120-0DF864427F42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ates.SchemaRegistry", "src\Ates.SchemaRegistry\Ates.SchemaRegistry.csproj", "{2032BCC1-158B-4D86-BBEE-DE692D192969}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ates.Accounting", "src\Ates.Accounting\Ates.Accounting.csproj", "{1B213987-EBB9-4F9D-956E-8799E7247126}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F6DFE210-BE32-4FA6-9AE7-1EC3657761A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6DFE210-BE32-4FA6-9AE7-1EC3657761A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6DFE210-BE32-4FA6-9AE7-1EC3657761A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6DFE210-BE32-4FA6-9AE7-1EC3657761A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43EC44C9-9E71-4AF3-A120-0DF864427F42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43EC44C9-9E71-4AF3-A120-0DF864427F42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43EC44C9-9E71-4AF3-A120-0DF864427F42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43EC44C9-9E71-4AF3-A120-0DF864427F42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2032BCC1-158B-4D86-BBEE-DE692D192969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2032BCC1-158B-4D86-BBEE-DE692D192969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2032BCC1-158B-4D86-BBEE-DE692D192969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2032BCC1-158B-4D86-BBEE-DE692D192969}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B213987-EBB9-4F9D-956E-8799E7247126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B213987-EBB9-4F9D-956E-8799E7247126}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B213987-EBB9-4F9D-956E-8799E7247126}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B213987-EBB9-4F9D-956E-8799E7247126}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
