@@ -1,5 +1,5 @@
 # Асинхронная архитектура V
-Awesome Task Exchange System **`Неделя 1`**
+Awesome Task Exchange System
 
 ## Event Storming
 [Figma](https://www.figma.com/file/dILgWmLSCLC8TtZCRkhIsl/ES?type=whiteboard&t=mkHenf8HT9jpfx0b-1)
