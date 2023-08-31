@@ -28,10 +28,16 @@ public class KafkaConsumerMessageHandler : IKafkaConsumerMessageHandler
 
         INotification? @event = kafkaEvent.Name switch
         {
-            "AccountCreated" when kafkaEvent.Version == 1 =>
-                kafkaEvent.Data.Deserialize<AccountCreatedIntegrationEvent>(jsonSerializerOptions),
-            "AccountRoleChanged" when kafkaEvent.Version == 1 => kafkaEvent.Data
-                .Deserialize<AccountRoleChangedIntegrationEvent>(jsonSerializerOptions),
+            "AccountCreated"     when kafkaEvent.Version == 1 =>
+                                 kafkaEvent.Data.Deserialize<AccountCreatedIntegrationEvent>(jsonSerializerOptions),
+            "AccountRoleChanged" when kafkaEvent.Version == 1 => 
+                                 kafkaEvent.Data.Deserialize<AccountRoleChangedIntegrationEvent>(jsonSerializerOptions),
+            "TaskCreated"        when kafkaEvent.Version == 2 =>
+                                 kafkaEvent.Data.Deserialize<TaskCreatedIntegrationEvent>(jsonSerializerOptions),
+            "TaskCompleted"      when kafkaEvent.Version == 1 => 
+                                 kafkaEvent.Data.Deserialize<TaskCompletedIntegrationEvent>(jsonSerializerOptions),
+            "TaskReassigned"     when kafkaEvent.Version == 1 => 
+                                 kafkaEvent.Data.Deserialize<TaskReassignedIntegrationEvent>(jsonSerializerOptions),
             
             _ => throw new NotSupportedException($"Unsupported Kafka event \"{kafkaEvent.Name}\" or event version \"{kafkaEvent.Version}\".")
         };
@@ -44,6 +50,12 @@ public class KafkaConsumerMessageHandler : IKafkaConsumerMessageHandler
                 await _publisher.Publish(@event);
             
             if (topic == "accounts-streaming")
+                await _publisher.Publish(@event);
+            
+            if (topic == "tasks-streaming")
+                await _publisher.Publish(@event);
+            
+            if (topic == "task-lifetime")
                 await _publisher.Publish(@event);
         }
 

@@ -1,6 +1,8 @@
-namespace Ates.Tracker.Application.IntegrationEvents;
+using MediatR;
 
-public class TaskCompletedIntegrationEvent
+namespace Ates.Accounting.Application.IntegrationEvents;
+
+public class TaskCompletedIntegrationEvent : INotification
 {
     public TaskCompletedIntegrationEvent(Guid taskId, Guid assigneeId)
     {

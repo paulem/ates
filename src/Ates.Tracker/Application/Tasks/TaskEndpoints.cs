@@ -43,7 +43,15 @@ public static class TaskEndpoints
 
             // Produce event
 
-            var @event = new TaskCreatedIntegrationEvent(task.PublicId);
+            var @event = new TaskCreatedIntegrationEvent(
+                task.PublicId,
+                account.PublicId,
+                task.Title,
+                task.Description,
+                task.Price.Fee,
+                task.Price.Reward,
+                task.Status);
+            
             var kafkaEvent = new KafkaEvent<TaskCreatedIntegrationEvent>(Guid.NewGuid(), 1, DateTime.UtcNow, @event);
             var message = JsonSerializer.Serialize(kafkaEvent,
                 new JsonSerializerOptions { Converters = { new JsonStringEnumConverter() } });
@@ -53,7 +61,7 @@ public static class TaskEndpoints
             if (result.IsValid)
             {
                 await producer.Produce("tasks-streaming", message, CancellationToken.None);
-                await producer.Produce("tasks", message, CancellationToken.None);
+                await producer.Produce("task-lifetime", message, CancellationToken.None);
             }
             else
             {
@@ -84,18 +92,15 @@ public static class TaskEndpoints
 
             // Produce event
             
-            var @event = new TaskCompletedIntegrationEvent(task.PublicId);
+            var @event = new TaskCompletedIntegrationEvent(task.PublicId, task.Assignee.PublicId);
             var kafkaEvent = new KafkaEvent<TaskCompletedIntegrationEvent>(Guid.NewGuid(), 1, DateTime.UtcNow, @event);
             var message = JsonSerializer.Serialize(kafkaEvent,
             new JsonSerializerOptions { Converters = { new JsonStringEnumConverter() } });
             
             var result = SchemaValidator.Validate(message, DomainNames.Tasks, kafkaEvent.Name, kafkaEvent.Version);
-            
+
             if (result.IsValid)
-            {
-                await producer.Produce("tasks-streaming", message, CancellationToken.None);
-                await producer.Produce("tasks", message, CancellationToken.None);
-            }
+                await producer.Produce("task-lifetime", message, CancellationToken.None);
             else
             {
                 // Log here
@@ -134,18 +139,15 @@ public static class TaskEndpoints
 
             foreach (var task in openTasks)
             {
-                var @event = new TaskReassignedIntegrationEvent(task.PublicId);
+                var @event = new TaskReassignedIntegrationEvent(task.PublicId, task.Assignee.PublicId);
                 var kafkaEvent = new KafkaEvent<TaskReassignedIntegrationEvent>(Guid.NewGuid(), 1, DateTime.UtcNow, @event);
                 var message = JsonSerializer.Serialize(kafkaEvent,
                     new JsonSerializerOptions { Converters = { new JsonStringEnumConverter() } });
             
                 var result = SchemaValidator.Validate(message, DomainNames.Tasks, kafkaEvent.Name, kafkaEvent.Version);
-            
+
                 if (result.IsValid)
-                {
-                    await producer.Produce("tasks-streaming", message, CancellationToken.None);
-                    await producer.Produce("tasks", message, CancellationToken.None);
-                }
+                    await producer.Produce("task-lifetime", message, CancellationToken.None);
                 else
                 {
                     // Log here
